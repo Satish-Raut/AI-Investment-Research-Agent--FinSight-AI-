@@ -1,0 +1,299 @@
+/* ── Google Fonts (must be first @import) ───────── */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=Rubik+Lines&display=swap');
+
+@import "tailwindcss";
+
+
+/* ── Design tokens ──────────────────────────────── */
+:root {
+  /* backgrounds */
+  --bg: #0c0c0e;
+  --surface: #131316;
+  --surface2: #1a1a1f;
+
+  /* borders */
+  --border: rgba(255, 255, 255, 0.07);
+  --border2: rgba(255, 255, 255, 0.12);
+
+  /* accent: single indigo */
+  --accent: #6366f1;
+  --accent-dim: rgba(99, 102, 241, 0.12);
+  --accent-ring: rgba(99, 102, 241, 0.30);
+
+  /* text scale */
+  --t1: #f0f0f2;
+  /* headings */
+  --t2: #9898a6;
+  /* body */
+  --t3: #55555f;
+  /* muted / labels */
+}
+
+/* ── Base ───────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--t1);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Font helpers ───────────────────────────────── */
+.serif {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.rubik-lines {
+  font-family: 'Rubik Lines', sans-serif;
+}
+
+/* ── Layout container ────────────────────────────── */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  width: 100%;
+}
+
+/* ── Shared card ────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+/* ── Pill / badge ───────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--t2);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Buttons ────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 26px;
+  border-radius: 999px;
+  /* pill shape like the reference */
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity .18s, transform .18s, box-shadow .18s;
+  text-decoration: none;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.30);
+}
+
+.btn-primary:hover {
+  opacity: .88;
+  box-shadow: 0 6px 28px rgba(99, 102, 241, 0.40);
+}
+
+.btn-secondary {
+  background: var(--surface2);
+  color: var(--t2);
+  border: 1px solid var(--border2);
+}
+
+.btn-secondary:hover {
+  color: var(--t1);
+  border-color: rgba(255, 255, 255, 0.20);
+}
+
+.btn:disabled {
+  opacity: .38;
+  cursor: not-allowed;
+}
+
+/* ── Input ──────────────────────────────────────── */
+.input {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--t1);
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color .18s;
+  width: 100%;
+}
+
+.input:focus {
+  border-color: var(--accent-ring);
+}
+
+.input::placeholder {
+  color: var(--t3);
+}
+
+/* ── Ticker animation ───────────────────────────── */
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-anim {
+  animation: ticker 32s linear infinite;
+}
+
+/* ── Nav active ─────────────────────────────────── */
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--t2);
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: color .15s, background .15s, border-color .15s;
+}
+
+.nav-link:hover {
+  color: var(--t1);
+}
+
+.nav-link.active {
+  color: var(--t1);
+  background: var(--accent-dim);
+  border-color: var(--accent-ring);
+}
+
+/* ── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a30;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #38383f;
+}
+
+/* ── Print ──────────────────────────────────────── */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .card {
+    background: #fff !important;
+    border: 1px solid #ddd !important;
+  }
+}
+
+/* ── Dashboard Demo Animations ─────────────────── */
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(300%); }
+}
+
+.scan-beam {
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
+  opacity: 0.4;
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(99,102,241,0.05); }
+  50% { box-shadow: 0 0 30px rgba(99,102,241,0.15); }
+}
+
+.glow-card {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.cursor-blink {
+  animation: cursorBlink 1s step-end infinite;
+}
+
+@keyframes fadeScaleIn {
+  from { opacity: 0; transform: scale(0.98) translateY(6px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeScaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Lenis Smooth Scroll ────────────────────────── */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
